@@ -1,24 +1,44 @@
 extern crate ring;
+extern crate serde;
+
+#[macro_use]
+extern crate serde_derive;
+
+// use serde::ser::Serialize;
 
 use std::collections::HashMap;
 
 type PubKey = [u8; 32];
 type HashResult = u64;
 type KeyPair = [u8; 85];
+type SignatureVec = Vec<u8>;
+type Address = u64; // pub key hash?
 
+#[derive(Serialize, Deserialize, Debug)]
+enum Message {
+    QueryBlock(u64),
+    TransactionMsg(Transaction),
+    BlockMsg(Block)
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 struct Transaction {
     amount: u64,
     from: PubKey,
     to: u64,
     sig: ring::signature::Signature,
+    to: Address,
+    sig: SignatureVec,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
 struct Block {
     txs: Vec<Transaction>,
     minerpub: PubKey,
     hash: HashResult,
     nonce: u64,
     sig: ring::signature::Signature
+    sig: SignatureVec,
 }
 
 pub struct Node {
