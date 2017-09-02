@@ -6,3 +6,10 @@ authors = ["Mark Mossberg <mark.mossberg@gmail.com>"]
 [dependencies]
 ring = "0.12.0"
 untrusted = ""
+serde = ""
+serde_derive = ""
+serde_json = ""
+
+[[bin]]
+name = "aevum"
+doc = false
