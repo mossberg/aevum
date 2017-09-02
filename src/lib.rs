@@ -25,8 +25,6 @@ enum Message {
 struct Transaction {
     amount: u64,
     from: PubKey,
-    to: u64,
-    sig: ring::signature::Signature,
     to: Address,
     sig: SignatureVec,
 }
@@ -37,7 +35,6 @@ struct Block {
     minerpub: PubKey,
     hash: HashResult,
     nonce: u64,
-    sig: ring::signature::Signature
     sig: SignatureVec,
 }
 
@@ -73,7 +70,6 @@ mod tests {
     use std::hash::Hasher;
     extern crate ring;
     extern crate untrusted;
-    use ring;
 
     // #[test]
     fn wrf() {
