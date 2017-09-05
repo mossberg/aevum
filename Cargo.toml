@@ -9,6 +9,7 @@ untrusted = ""
 serde = ""
 serde_derive = ""
 serde_json = ""
+bincode = ""
 
 [[bin]]
 name = "aevum"
